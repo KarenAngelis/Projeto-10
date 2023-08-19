@@ -1,3 +1,5 @@
+/* TODA A PAGINA*/
+
 * {
   margin: 0;
   padding: 0;
@@ -8,12 +10,15 @@
 
 :root {
   font-size: 62.5%;
-  --color-base-white: #fff;
-  --color-base-gray-100: #f5f5f5;
-  --color-base-gray-900:#202024;
-  --color-base-gray-300: #8d8d99;
-  --color-base-gray-200: #EEE;
-  --color-base-gray-400: #3D3D3D
+
+  --hue: 310;
+
+  --color-base-white: hsl(0, 0%, 100%);
+  --color-base-gray-100: hsl(0, 0%, 96%);
+  --color-base-gray-900: hsl(var(--hue), 60%, 30%);
+  --color-base-gray-300: hsl(var(--hue), 60%, 58%);
+  --color-base-gray-200: hsl(0, 0%, 93%);
+  --color-base-gray-400: hsl(0, 0%, 24%);
 }
 
 body {
@@ -35,6 +40,7 @@ body {
   margin: 0 auto;
 }
 
+/* MANU INICIAL*/
 
 header, .input-wrapper,
 nav,
@@ -48,6 +54,7 @@ nav ul{
 header form{
   flex: 1; /* Vai preencher todo o espaço pra ele */
 }
+
 
 nav ul{
   list-style: none; /* Remove os marcadores padrão */
@@ -103,6 +110,8 @@ ul li.active{
    flex-shrink: 0;
 }
 
+/* GARERIA DE FOTOS // TODO O CORPO*/
+
 main {
   overflow-y: scroll;
   background-color: var(--color-base-gray-100);
@@ -115,6 +124,7 @@ main h1{
   padding-top: 1.6rem;
 }
 
+
 .galery{
   margin-top: 3.2rem;
 
@@ -123,6 +133,7 @@ main h1{
   gap:2.2rem;
 }
 
+/* AS CAIXAS CONTENDO AS INFORMAÇÕES */
 .item img{
   width: 100%;
   aspect-ratio: 16/9; /* é usada para definir a proporção de aspecto (largura/altura)
@@ -140,10 +151,8 @@ main h1{
    transition: filter 1s 1s ease-out, transform 2s 2s ease-in ;*/
 
    transition: all 1s 1s ease-out;
-
+   display: block;
 }
-
-
 
 .item img:hover{
     filter: hue-rotate(7deg) contrast(101%) saturate(200%);
@@ -162,6 +171,7 @@ main h1{
   background: var(--color-base-white);
   z-index: 1;
   position: relative;
+  color: var(--color-base-gray-900);
 
 }
 
@@ -182,6 +192,7 @@ main h1{
   line-height: 0;
 }
 
+/* FOOTER*/
 
 footer p{
   text-align: center;
@@ -190,3 +201,37 @@ footer p{
  
 }
 
+/* ANIMAÇÕES*/
+
+header{
+  --startY: -100%;
+  animation: move .2s;
+}
+
+footer{
+  --startY: 100%;
+  animation: move .2s;
+}
+
+@keyframes move {
+  from{
+    transform: translateY(var(--startY));
+  }
+  
+}
+
+.item {
+  --delay: .4s;
+  animation: appear .4s var(--delay) backwards;
+}
+
+@keyframes appear{
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
