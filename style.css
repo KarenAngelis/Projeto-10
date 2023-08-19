@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -6,134 +6,187 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-:root{
-  font-family: Mulish;
+:root {
   font-size: 62.5%;
+  --color-base-white: #fff;
+  --color-base-gray-100: #f5f5f5;
+  --color-base-gray-900:#202024;
+  --color-base-gray-300: #8d8d99;
+  --color-base-gray-200: #EEE;
+  --color-base-gray-400: #3D3D3D
 }
 
 body {
   font-size: 1.6rem;
+  font-family: 'Mulish', sans-serif;
+  background-color: var(--color-base-white);
 }
 
-/* ### Cabeçario ### */
 
-header{
+#app {
   display: grid;
-  grid-template-columns: repeat(5, auto);
-  background: #FFF;
-  margin: 16px 112px;
-  align-items: center;
+  grid-template-rows: max-content 1fr max-content;
+  height: 100vh;
 }
 
-header a{
-  text-decoration: none; /* Remove o sublinhado */
-  color: inherit; /* Usa a cor padrão do elemento pai */
-  font-size: 18px;
-  font-style: normal;
+.container {
+  padding: 1.6rem 3.2rem;
+  width: min(112rem, 100%);
+  margin: 0 auto;
+}
+
+
+header, .input-wrapper,
+nav,
+nav ul{
+  display: flex;
+  align-items: center;
+  gap: 7.5rem;
   font-weight: 700;
 }
 
-header input{
-  width: 718px;
-  height: 48px;
-  padding: 12px 16px;
-  gap: 12px;
+header form{
+  flex: 1; /* Vai preencher todo o espaço pra ele */
+}
 
-  border-radius: 5px;
-  border: #F5F5F5 ;
+nav ul{
+  list-style: none; /* Remove os marcadores padrão */
+  padding: 0; /* Remove o espaçamento interno */
+  margin: 0; /* Remove o espaçamento externo */
+  font-size: 1.8rem;
+  color: var(--color-base-gray-300);
+}
+
+ul li.active{
+  color: var(--color-base-gray-900);
+}
+
+.input-wrapper label{
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.input-wrapper input{
+  width: 100%;
+  padding: 1.6rem;
+  
+  border-radius: .6rem;
+  border: 0;
+  background: var(--color-base-gray-200);
   opacity: 0.56;
-  background: #EEE;
-
-  color: #3D3D3D;
-  font-size: 16px;
+  font-family: 'Mulish', sans-serif;
+  
+  color: var(--color-base-gray-400);
+  font-size: 1.6rem;
   font-weight: 600;
 }
+
+.input-wrapper input::placeholder{
+  color: var(--color-base-gray-400);
+}
+
 
 .foto {
-  width: 42px;
-  height: 42px;
-  flex-shrink: 0;
-  border-radius: 999px;
-}
+  width: 4.2rem;
+  height: 4.2rem;
 
-/* ### CORPO ### */
-
-.grid {
-    background: #F5F5F5;
-    display: grid;
-    grid-template-columns: repeat(3, 370px);
-    grid-template-rows: repeat(3);
-    overflow: hidden; /*é útil quando você deseja criar efeitos 
-    de recorte, como recortar imagens ou controlar a exibição de 
-    elementos dentro de contêineres com dimensões fixas. */
-  
-    gap: 50px 42px;
-    margin-bottom: 65px;
-}
-
-.grid div{
-  width: 390px;
-  height: 287px;
-  border-radius: 7px;
-  background: #FFF;
-  
-}
-
-main{
-  display: grid;
-  justify-content:center;
-  background: #F5F5F5;
+  object-fit: cover; /* Quando você define object-fit: cover;
+   você está instruindo o navegador a ajustar a imagem para 
+   preencher completamente o contêiner, mantendo a proporção 
+   original da imagem. Isso significa que a imagem será redimensionada
+   para cobrir todo o espaço disponível no contêiner, podendo recortar
+   partes da imagem se necessário, para garantir que ela preencha o espaço. */
  
+   border-radius: 50%;
+   flex-shrink: 0;
 }
+
+main {
+  overflow-y: scroll;
+  background-color: var(--color-base-gray-100);
+}
+
+/*Galery*/
 
 main h1{
-  color:  #202024;
-  font-size: 24px;
-  font-weight: 700;
-  margin: 36px 0 36px 0;
+  font-size: 2.4rem;
+  padding-top: 1.6rem;
+}
+
+.galery{
+  margin-top: 3.2rem;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:2.2rem;
+}
+
+.item img{
+  width: 100%;
+  aspect-ratio: 16/9; /* é usada para definir a proporção de aspecto (largura/altura)
+   de um elemento. Essa propriedade permite que você especifique a proporção desejada,
+   o que pode ser especialmente útil para elementos responsivos, como imagens e vídeos.*/
+   object-fit: cover;
+   filter: grayscale(0.2);
+   /*transition-property: all; Posso colocar por vírgula todas as proporções em que
+   eu quero aplicar, ou all que vai pegar todas :hover
+   transition-duration: 1s;
+   transition-delay: 1s;
+   transition-timing-function:ease-out ; 
+   
+   Posso fazer assim:
+   transition: filter 1s 1s ease-out, transform 2s 2s ease-in ;*/
+
+   transition: all 1s 1s ease-out;
 
 }
 
-.grid h2{
-  color: #202024;
-  font-size: 18px;
-  font-weight: 700;
-  padding: 36px 22px 12px;
+
+
+.item img:hover{
+    filter: hue-rotate(7deg) contrast(101%) saturate(200%);
+    transform: scale(1.1) rotate(-1deg);
 }
 
-.grid p{
-  color:  #202024;
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 400;
+.item {
+  background: var(--color-base-white);
+  border-radius: 0.7rem;
+  height: 28.7rem;
+  overflow: hidden;
+}
 
-  border-radius: 5px;
-  background: #F5F5F5;
-  width: 32px;
-  height: 8px;
-
-
+.details {
+  padding: 2.2rem;
+  background: var(--color-base-white);
+  z-index: 1;
+  position: relative;
 
 }
 
-
-footer{
-  background: #FFF;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  height: 69px;
-  padding: 16px;
-
+.details h2{
+  font-size: 1.8rem;
 }
+
+.tags{
+  margin-top: 1.2rem;
+}
+
+.tags span{
+  font-size: 1.2rem;
+  color: var(--color-base-gray-900);
+  padding: .6rem;
+  background-color: var(--color-base-gray-100);
+  border-radius: .5rem;
+  line-height: 0;
+}
+
 
 footer p{
-  color: #323238;
-  font-size: 16px;
+  text-align: center;
+  padding: 1.6rem;
   font-weight: 600;
-
-
-
-
+ 
 }
 
